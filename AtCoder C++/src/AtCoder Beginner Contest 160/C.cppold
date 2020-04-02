@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	int K, N;
+	cin >> K >> N;
+	int A[N];
+	int maxgap = -1;
+	for (int i = 0; i < N; i++) {
+		cin >> A[i];
+	}
+	for (int i = 1; i < N; i++) {
+		if (A[i] - A[i - 1] > maxgap) {
+			maxgap = A[i] - A[i - 1];
+		}
+	}
+	if (K - A[N - 1] + A[0] > maxgap) {
+		maxgap = K - A[N - 1] + A[0];
+	}
+	int walkdist = K - maxgap;
+	cout << walkdist << endl;
+	return 0;
+}

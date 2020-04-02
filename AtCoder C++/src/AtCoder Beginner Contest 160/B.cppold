@@ -1,0 +1,14 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	int X;
+	cin >> X;
+	int C500 = X / 500;
+	X %= 500;
+	int C5 = X / 5;
+	X %= 5;
+	int U = 1000 * C500 + 5 * C5;
+	cout << U << endl;
+	return 0;
+}
