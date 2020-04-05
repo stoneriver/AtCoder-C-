@@ -1,0 +1,19 @@
+// EX12 - 足したり引いたり
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+	string S;
+	cin >> S;
+	int res = 1;
+	for (int i = 1; i < S.size()-1; i+=2) {
+		if (S.at(i) == '+') {
+			res++;
+		} else if (S.at(i) == '-') {
+			res--;
+		}
+	}
+	cout << res << endl;
+	return 0;
+}
