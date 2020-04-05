@@ -1,0 +1,13 @@
+// EX14 - 三人兄弟の身長差
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int A, B, C;
+	cin >> A >> B >> C;
+	int maxh = max(A, max(B, C));
+	int minh = min(A, min(B, C));
+	cout << maxh - minh << endl;
+	return 0;
+}
