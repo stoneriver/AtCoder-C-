@@ -1,0 +1,26 @@
+// EX17 - 果物屋さんでお買い物
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int N, S;
+	cin >> N >> S;
+	vector<int> A(N), P(N);
+	for (int a = 0; a < N; a++) {
+		cin >> A.at(a);
+	}
+	for (int p = 0; p < N; p++) {
+		cin >> P.at(p);
+	}
+	int cnt = 0;
+	for (int a = 0; a < N; a++) {
+		for (int p = 0; p < N; p++) {
+			if (A.at(a) + P.at(p) == S) {
+				cnt++;
+			}
+		}
+	}
+	cout << cnt << endl;
+	return 0;
+}
