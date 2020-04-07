@@ -1,0 +1,18 @@
+// EX22 - 2つ目の値でソート
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int N;
+	cin >> N;
+	vector<pair<int64_t,int64_t>> dat(N);
+	for (auto &p : dat) {
+		cin >> p.second >> p.first;
+	}
+	sort(dat.begin(), dat.end());
+	for (auto &p : dat) {
+		cout << p.second << " " << p.first << endl;
+	}
+	return 0;
+}

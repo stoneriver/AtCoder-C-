@@ -1,0 +1,26 @@
+// EX23 - 最頻値
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int N;
+	cin >> N;
+	map<int64_t, int> Dat;	// Keyの数字を持つ数がValueのだけ存在する
+	unordered_set<int64_t> Keys;
+	for (int i = 0; i < N; i++) {
+		int key;
+		cin >> key;
+		Dat[key]++;
+		Keys.insert(key);
+	}
+	pair<int64_t, int> mode = make_pair(-1, -1);
+	for (auto key : Keys) {
+		if (Dat.at(key) > mode.second) {
+			mode.first = key;
+			mode.second = Dat.at(key);
+		}
+	}
+	cout << mode.first << " " << mode.second << endl;
+	return 0;
+}
