@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int gcd(int n, int m) {
+	if (n < m)
+		swap(n, m);
+	if (n % m == 0)
+		return m;
+	else
+		return gcd(m, n % m);
+}
+
+int main() {
+	int K, res = 0;
+	cin >> K;
+	for (int a = 1; a <= K; a++)
+		for (int b = 1; b <= K; b++)
+			for (int c = 1; c <= K; c++)
+				res += gcd(a, gcd(b, c));
+	cout << res << endl;
+	return 0;
+}
