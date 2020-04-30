@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int N;
+	cin >> N;
+	bool R[60 * 24 / 5 + 2];
+	for (int i = 0; i < sizeof(R) / sizeof(R[0]); i++)
+		R[i] = false;
+	int S, E;
+	for (int i = 0; i < N; i++) {
+		cin >> S >> E;
+		E *= -1;
+		S -= S % 5;
+		if (E % 5 != 0)
+			E += 5 - E % 5;
+		for (int j = (S / 100) * 12 + (S % 100) / 5;
+				j < (E / 100) * 12 + (E % 100) / 5; j++)
+			R[j] = true;
+	}
+	R[60 * 24 / 5 + 1] = false;
+	bool prev = false;
+	for (int i = 0; i < sizeof(R) / sizeof(R[0]); i++) {
+		if (prev == false && R[i] == true)
+			cout << setw(4) << setfill('0') << (i / 12) * 100 + (i % 12) * 5
+					<< "-";
+		else if (prev == true && R[i] == false)
+			cout << setw(4) << setfill('0') << (i / 12) * 100 + (i % 12) * 5
+					<< endl;
+		prev = R[i];
+	}
+	return 0;
+}

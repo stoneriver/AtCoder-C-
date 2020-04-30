@@ -1,0 +1,14 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int N, Ai;
+	set<int> A;
+	cin >> N;
+	for (int i = 0; i<N; i++) {
+		cin >> Ai;
+		A.insert(Ai);
+	}
+	cout << (A.size() == N ? "YES" : "NO") << endl;
+	return 0;
+}
