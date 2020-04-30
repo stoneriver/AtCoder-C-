@@ -1,0 +1,13 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int H, N, A, T = 0;
+	cin >> H >> N;
+	for (int i = 0; i < N; i++) {
+		cin >> A;
+		T += A;
+	}
+	cout << (T >= H ? "Yes" : "No") << endl;
+	return 0;
+}

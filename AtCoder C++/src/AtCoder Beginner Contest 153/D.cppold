@@ -1,0 +1,17 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+long long atk(long long H) {
+	if (H == 1) {
+		return 1;
+	} else {
+		return 2 * atk(H/2) + 1;
+	}
+}
+int main() {
+	long long H;
+	cin >> H;
+	cout << atk(H) << endl;
+	return 0;
+}
+

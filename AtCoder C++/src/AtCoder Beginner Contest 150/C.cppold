@@ -1,0 +1,33 @@
+//#include <bits/stdc++.h>
+//using namespace std;
+//
+//int main() {
+//
+//	int N;
+//	cin >> N;
+//	vector<int> V, P, Q;
+//	for (int i = 1; i <= N; i++) {
+//		V.push_back(i);
+//	}
+//	int dig;
+//	for (int i = 0; i < N; i++) {
+//		cin >> dig;
+//		P.push_back(dig);
+//	}
+//	for (int i = 0; i < N; i++) {
+//		cin >> dig;
+//		Q.push_back(dig);
+//	}
+//	int a = 0, b = 0;
+//	for (int i = 1; ; i++) {
+//		if (V == P)
+//			a = i;
+//		if (V == Q)
+//			b = i;
+//		if (a * b != 0)
+//			break;
+//		next_permutation(V.begin(), V.end());
+//	}
+//	cout << abs(a - b) << endl;
+//	return 0;
+//}

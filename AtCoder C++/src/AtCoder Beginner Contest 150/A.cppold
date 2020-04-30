@@ -2,10 +2,8 @@
 using namespace std;
 
 int main() {
-	int N, K;
-	string S;
-	cin >> N >> K;
-	cout << toupper(S[K-1]) << endl;
-
+	int K, X;
+	cin >> K >> X;
+	cout << (500 * K >= X ? "Yes" : "No") << endl;
 	return 0;
 }
