@@ -1,0 +1,17 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int N;
+	cin >> N;
+	for (int i = 1; ; i++) {
+		if (floor(i * 1.08) == N) {
+			cout << i << endl;
+			break;
+		} else if (i*1.08 > N) {
+			cout << ":(" << endl;
+			break;
+		}
+	}
+	return 0;
+}

@@ -1,0 +1,15 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	long long X, Y = 100;
+	cin >> X;
+	for (int i = 1; ; i++) {
+		Y *= 1.01;
+		if (Y >= X) {
+			cout << i << endl;
+			break;
+		}
+	}
+	return 0;
+}

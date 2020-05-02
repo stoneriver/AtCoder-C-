@@ -1,0 +1,15 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int a, b, s;
+	cin >> a >> b;
+	if (1 <= b && b <= 9)
+		s = 10 * a + b;
+	else if (10 <= b && b <= 99)
+		s = 100 * a + b;
+	else
+		s = 1000 * a + b;
+	cout << (floor(sqrt(s)) == sqrt(s) ? "Yes" : "No") << endl;
+	return 0;
+}

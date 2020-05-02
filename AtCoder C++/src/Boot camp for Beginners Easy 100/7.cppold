@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int A[3][3];
+	for (int i = 0; i < 3; i++)
+		for (int j = 0; j < 3; j++)
+			cin >> A[j][i];
+	int N;
+	cin >> N;
+	bool B[3][3];
+	for (int i = 0; i < 3; i++)
+		for (int j = 0; j < 3; j++)
+			B[j][i] = false;
+	for (int k = 0; k < N; k++) {
+		int in;
+		cin >> in;
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				if (A[j][i] == in)
+					B[j][i] = true;
+			}
+		}
+	}
+	for (int i = 0; i < 3; i++) {
+		if (B[i][0] == true && B[i][1] == true && B[i][2] == true) {
+			cout << "Yes" << endl;
+			return 0;
+		}
+	}
+	for (int j = 0; j < 3; j++) {
+		if (B[0][j] == true && B[1][j] == true && B[2][j] == true) {
+			cout << "Yes" << endl;
+			return 0;
+		}
+	}
+	if (B[0][0] == true && B[1][1] == true && B[2][2] == true) {
+		cout << "Yes" << endl;
+		return 0;
+	}
+	if (B[2][0] == true && B[1][1] == true && B[0][2] == true) {
+		cout << "Yes" << endl;
+		return 0;
+	}
+	cout << "No" << endl;
+	return 0;
+}

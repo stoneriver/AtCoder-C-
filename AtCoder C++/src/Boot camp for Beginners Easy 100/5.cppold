@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int N, M, C;
+	cin >> N >> M >> C;
+	int B[M];
+	for (int i = 0; i < M; i++)
+		cin >> B[i];
+	int ans = 0;
+	for (int i = 0; i < N; i++) {
+		int sum = 0;
+		for (int j = 0; j < M; j++) {
+			int in;
+			cin >> in;
+			sum += in * B[j];
+		}
+		sum += C;
+		if (sum > 0)
+			ans++;
+	}
+	cout << ans << endl;
+	return 0;
+}
