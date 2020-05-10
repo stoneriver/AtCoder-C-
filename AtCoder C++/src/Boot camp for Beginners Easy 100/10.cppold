@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int N;
+	cin >> N;
+	priority_queue<int> a;
+	for (int i = 0; i < N; i++) {
+		int j;
+		cin >> j;
+		a.push(j);
+	}
+	int A = 0, B = 0;
+	while (true) {
+		A += a.top();
+		a.pop();
+		if (a.empty())
+			break;
+		B += a.top();
+		a.pop();
+		if (a.empty())
+			break;
+	}
+	cout << A - B << endl;
+	return 0;
+}
