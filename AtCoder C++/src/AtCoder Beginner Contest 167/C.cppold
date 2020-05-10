@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int N, M, X;
+	cin >> N >> M >> X;
+	int C[N], A[N][M];
+	for (int i = 0; i < N; i++) {
+		cin >> C[i];
+		for (int j = 0; j < M; j++) {
+			cin >> A[i][j];
+		}
+	}
+	int minc = 2000000000;
+	for (int i = 0; i < pow(2, N); i++) {
+		int b[N], var = i;
+		for (int j = N - 1; j >= 0; j--) {
+			b[j] = var / pow(2, j);
+			var = var % (int) pow(2, j);
+		}
+		for (int j = 0; j < M; j++) {
+			int cum = 0;
+			for (int k = 0; k < N; k++) {
+				cum += b[k] * A[k][j];
+			}
+			if (cum < X) {
+				break;
+			} else if (j == M - 1) {
+				int c = 0;
+				for (int k = 0; k < N; k++) {
+					c += b[k] * C[k];
+				}
+				minc = min(c, minc);
+			}
+		}
+	}
+	cout << (minc == 2000000000 ? -1 : minc) << endl;
+	return 0;
+}

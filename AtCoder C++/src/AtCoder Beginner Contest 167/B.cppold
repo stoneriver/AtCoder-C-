@@ -1,0 +1,15 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int A, B, C, K;
+	cin >> A >> B >> C >> K;
+	if (K <= A) {
+		cout << K << endl;
+	} else if (A < K && K <= A + B) {
+		cout << A << endl;
+	} else if (A + B < K) {
+		cout << 2 * A + B - K << endl;
+	}
+	return 0;
+}
