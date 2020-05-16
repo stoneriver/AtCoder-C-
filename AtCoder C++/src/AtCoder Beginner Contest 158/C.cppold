@@ -1,0 +1,16 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int A, B;
+	cin >> A >> B;
+	for (int n = ceil((double) A / 0.08); n < floor((double) (A + 1) / 0.08);
+			n++) {
+		if (floor((double) n * 0.10) == B) {
+			cout << n << endl;
+			return 0;
+		}
+	}
+	cout << -1 << endl;
+	return 0;
+}

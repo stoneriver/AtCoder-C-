@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int num[9];
+    bool bingo[9];
+    for (int i = 0; i < 9; i++)
+    {
+        bingo[i] = false;
+        cin >> num[i];
+    }
+    int N, b;
+    cin >> N;
+    for (int i = 0; i < N; i++)
+    {
+        cin >> b;
+        for (int j = 0; j < 9; j++)
+        {
+            bingo[j] = bingo[j] || (num[j] == b);
+        }
+    }
+    for (int i = 0; i < 9; i += 3)
+    {
+        if (bingo[i] && bingo[i + 1] && bingo[i + 2])
+        {
+            cout << "Yes" << endl;
+            return 0;
+        }
+    }
+    for (int i = 0; i < 3; i++)
+    {
+        if (bingo[i] && bingo[i + 3] && bingo[i + 6])
+        {
+            cout << "Yes" << endl;
+            return 0;
+        }
+    }
+    if ((bingo[0] && bingo[4] && bingo[8]) || (bingo[2] && bingo[4] && bingo[6]))
+    {
+        cout << "Yes" << endl;
+        return 0;
+    }
+    cout << "No" << endl;
+    return 0;
+}

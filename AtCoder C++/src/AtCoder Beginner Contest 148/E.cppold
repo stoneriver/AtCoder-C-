@@ -1,0 +1,17 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	long long N;
+	cin >> N;
+	long long ans = 0;
+	if (N % 2 == 0) {
+		long long b = 10;
+		while (b <= N) {
+			ans += N / b;
+			b *= 5;
+		}
+	}
+	cout << ans << endl;
+	return 0;
+}

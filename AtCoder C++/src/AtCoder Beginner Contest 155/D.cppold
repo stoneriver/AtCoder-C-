@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define MAX 200000
+
+int XC2(int x) {
+	return x * (x - 1) / 2;
+}
+
+int main() {
+	int N, K, A[MAX];
+	cin >> N >> K;
+	int n = 0, z = 0, p = 0;
+	for (int i = 0; i < N; i++) {
+		cin >> A[i];
+		if (A[i] < 0)
+			n++;
+		else if (A[i] == 0)
+			z++;
+		else if (A[i] > 0)
+			p++;
+	}
+	sort(&A[0], &A[N]);
+	long long ans;
+	if (K <= n * p) {
+		ans = A[K / p] * A[N - 1 - K % p];
+	} else if (K <= n * p + XC2(N) - XC2(n + p)) {
+		ans = 0;
+	} else {
+		// ここのアルゴリズムが無理。この問題難しいらしいし一旦置いとく
+		ans = -1;
+	}
+	cout << ans;
+	return 0;
+}

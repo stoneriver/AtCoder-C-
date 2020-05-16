@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+#define MAX 3
+
+int N, M;
+int s[MAX];
+char c[MAX];
+
+int first() {
+	int ans;
+	if (N == 1) {
+		ans = 0;
+	} else {
+		ans = 1;
+		for (int i = 0; i < N - 1; i++) {
+			ans *= 10;
+		}
+	}
+	return ans;
+}
+
+int end() {
+	int ans = 1;
+	for (int i = 0; i < N; i++) {
+		ans *= 10;
+	}
+	return ans;
+}
+
+int main() {
+	cin >> N >> M;
+	for (int i = 0; i < M; i++) {
+		cin >> s[i] >> c[i];
+	}
+	for (int i = first(); i < end(); i++) {
+		string str = to_string(i);
+		bool flg = true;
+		for (int j = 0; j < M; j++) {
+			if (str[s[j] - 1] != c[j]) {
+				flg = false;
+				break;
+			}
+		}
+		if (flg) {
+			cout << i << endl;
+			return 0;
+		}
+	}
+	cout << -1 << endl;
+	return 0;
+}

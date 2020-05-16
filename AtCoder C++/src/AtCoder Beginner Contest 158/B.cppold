@@ -1,0 +1,10 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	long long N, A, B;
+	cin >> N >> A >> B;
+	long long p = A + B;
+	cout << (N / p) * A + min(N % p, A) << endl;
+	return 0;
+}
