@@ -1,0 +1,116 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+#define EPS (1e-10)
+#define equals(a, b) (fabs((a) - (b)) < EPS)
+#define MAX 200000
+#define MOD 1000000007
+
+long long gcd(long long a, long long b) {
+	if (a < b)
+		swap(a, b);
+	if (a % b == 0) {
+		return b;
+	} else {
+		return gcd(b, a % b);
+	}
+}
+
+long long combination2(long long n) {
+	return n * (n - 1) / 2;
+}
+
+std::vector<std::vector<long long>> comb(int n, int r) {
+	std::vector<std::vector<long long>> v(n + 1,
+			std::vector<long long>(n + 1, 0));
+	for (int i = 0; i < v.size(); i++) {
+		v[i][0] = 1;
+		v[i][i] = 1;
+	}
+	for (int j = 1; j < v.size(); j++) {
+		for (int k = 1; k < j; k++) {
+			v[j][k] = (v[j - 1][k - 1] + v[j - 1][k]);
+		}
+	}
+	return v;
+}
+
+class IrreducibleFraction {
+public:
+	long long numerator, denomenator;
+	IrreducibleFraction(long long n, long long d) {
+		long long g = gcd(abs(n), abs(d));
+		numerator = n / g;
+		denomenator = d / g;
+	}
+	double value() const {
+		return (double) numerator / denomenator;
+	}
+	bool operator <(const IrreducibleFraction &i) const {
+		return value() < i.value();
+	}
+	bool operator ==(const IrreducibleFraction &i) const {
+		return ((value() * i.value() < 0)
+				&& abs(numerator) == abs(i.denomenator)
+				&& abs(denomenator) == abs(i.numerator));
+	}
+	IrreducibleFraction getInvneg() {
+		return IrreducibleFraction(-denomenator, numerator);
+	}
+
+};
+
+multiset<IrreducibleFraction> PosQ;
+multiset<IrreducibleFraction> NegQ;
+vector<pair<ll, ll>> Pair00;
+vector<pair<ll, ll>> PairN0;
+vector<pair<ll, ll>> Pair0N;
+
+int main() {
+	int N;
+	cin >> N;
+	for (int i = 0; i < N; i++) {
+		ll A, B;
+		cin >> A >> B;
+		if (A == 0 && B == 0) {
+			Pair00.push_back(make_pair(A, B));
+		} else if (A == 0) {
+			Pair0N.push_back(make_pair(A, B));
+		} else if (B == 0) {
+			PairN0.push_back(make_pair(A, B));
+		} else if ((A > 0 && B > 0) || (A < 0 && B < 0)) {
+			PosQ.insert(IrreducibleFraction(A, B));
+		} else {
+			NegQ.insert(IrreducibleFraction(A, B));
+		}
+	}
+
+	long cntNGPair = 0;
+	for (multiset<IrreducibleFraction>::iterator it = PosQ.begin();
+			it != PosQ.end(); it++) {
+		IrreducibleFraction fra = *it;
+		cntNGPair += NegQ.count(fra.getInvneg());
+	}
+
+	cntNGPair += combination2(Pair00.size());
+	cntNGPair += Pair00.size() * (N - Pair00.size());
+	cntNGPair += Pair0N.size() * PairN0.size();
+
+	long long allComb = 0;
+	allComb += N;
+	vector<vector<long long>> v = comb(N, 2);
+	allComb += v[N][2];
+	allComb -= cntNGPair;
+
+	for (int i = 3; i <= N; i++) {
+		v = comb(N, i);
+		allComb += v[N][i];
+		v = comb(N-2, i-2);
+		allComb -= v[N-2][i-2] * cntNGPair;
+		allComb %= MOD;
+	}
+
+	cout << allComb << endl;
+
+	return 0;
+}

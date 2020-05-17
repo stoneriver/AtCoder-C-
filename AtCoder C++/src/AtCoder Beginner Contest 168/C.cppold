@@ -1,0 +1,12 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int A, B, H, M;
+	cin >> A >> B >> H >> M;
+	double h = 2 * M_PI * (H + M / 60.0) / 12.0;
+	double m = 2 * M_PI * M / 60.0;
+	double d = sqrt(A * A + B * B - 2 * A * B * cos(h - m));
+	cout << fixed << setprecision(15) << d << endl;
+	return 0;
+}
