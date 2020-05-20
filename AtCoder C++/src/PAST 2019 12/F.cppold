@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	string S;
+	cin >> S;
+	vector<string> out;
+	while (!S.empty()) {
+		int i = 1;
+		while (true) {
+			if (isupper(S[i])) {
+				i++;
+				break;
+			}
+			i++;
+		}
+		out.push_back(S.substr(0, i));
+		S = S.substr(i, S.size());
+	}
+	for (int i = 0; i < out.size(); i++) {
+		out[i][0] = tolower(out[i][0]);
+		out[i][out[i].size()-1] = tolower(out[i][out[i].size()-1]);
+	}
+	sort(out.begin(), out.end());
+	for (int i = 0; i < out.size(); i++) {
+		out[i][0] = toupper(out[i][0]);
+		out[i][out[i].size()-1] = toupper(out[i][out[i].size()-1]);
+	}
+	for (int i = 0; i < out.size(); i++) {
+		cout << out[i];
+	}
+	cout << endl;
+	return 0;
+}

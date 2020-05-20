@@ -1,0 +1,52 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define MAX 100
+set<int> Follow[MAX + 1], Followed[MAX + 1];
+int N, Q;
+
+int main() {
+	cin >> N >> Q;
+	for (int i = 0; i < Q; i++) {
+		int cmd, a, b;
+		cin >> cmd;
+		switch (cmd) {
+		case 1: {
+			cin >> a >> b;
+			Follow[a].insert(b);
+			Followed[b].insert(a);
+			break;
+		}
+		case 2: {
+			cin >> a;
+			set<int> f = Followed[a];
+			for (set<int>::iterator it = f.begin(); it != f.end(); it++) {
+				Follow[a].insert(*it);
+				Followed[*it].insert(a);
+			}
+			break;
+		}
+		case 3: {
+			cin >> a;
+			set<int> f1 = Follow[a];
+			for (set<int>::iterator it1 = f1.begin(); it1 != f1.end(); it1++) {
+				set<int> f2 = Follow[*it1];
+				for (set<int>::iterator it2 = f2.begin(); it2 != f2.end();
+						it2++) {
+					if (a == *it2)
+						continue;
+					Follow[a].insert(*it2);
+					Followed[*it2].insert(a);
+				}
+			}
+			break;
+		}
+		}
+	}
+	for (int i = 1; i <= N; i++) {
+		for (int j = 1; j <= N; j++) {
+			cout << (Follow[i].find(j) != Follow[i].end() ? "Y" : "N");
+		}
+		cout << endl;
+	}
+	return 0;
+}

@@ -1,0 +1,52 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define MAX 6
+int ans = INT_MIN;
+int cnt = 0;
+int N, A[MAX][MAX];
+
+void solve(int nxt, vector<int> a, vector<int> b, vector<int> c) {
+	if (nxt == N) {
+		int cost = 0;
+		for (int i = 0; i < a.size(); i++) {
+			for (int j = i + 1; j < a.size(); j++) {
+				cost += A[a[i]][a[j]];
+			}
+		}
+		for (int i = 0; i < b.size(); i++) {
+			for (int j = i + 1; j < b.size(); j++) {
+				cost += A[b[i]][b[j]];
+			}
+		}
+		for (int i = 0; i < c.size(); i++) {
+			for (int j = i + 1; j < c.size(); j++) {
+				cost += A[c[i]][c[j]];
+			}
+		}
+		ans = max(ans, cost);
+		cnt++;
+	} else {
+		a.push_back(nxt);
+		solve(nxt + 1, a, b, c);
+		a.pop_back();
+		b.push_back(nxt);
+		solve(nxt + 1, a, b, c);
+		b.pop_back();
+		c.push_back(nxt);
+		solve(nxt + 1, a, b, c);
+		c.pop_back();
+	}
+}
+
+int main() {
+	cin >> N;
+	for (int i = 0; i < N; i++) {
+		for (int j = i + 1; j < N; j++) {
+			cin >> A[i][j];
+		}
+	}
+	vector<int> a, b, c;
+	solve(0, a, b, c);
+	cout << ans << endl;
+	return 0;
+}
