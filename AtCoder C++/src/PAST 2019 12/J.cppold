@@ -1,0 +1,70 @@
+//だめだこりゃ
+
+#include <bits/stdc++.h>
+using namespace std;
+
+#define MAX 50
+#define INF INT_MAX
+#define WHITE 0
+#define GRAY 1
+#define BLACK 2
+int H, W, A[MAX][MAX];
+int ans = INF;
+
+class Node {
+public:
+	int x, y, c;
+	Node(int x, int y, int c) :
+			x(x), y(y), c(c) {
+	}
+	bool operator <(const Node &u) const {
+		return c < u.c;
+	}
+};
+
+
+int dijkstra(int x, int y) {
+	int d[MAX][MAX];
+	int color[MAX][MAX];
+	for (int i = 0; i < H; i++) {
+		for (int j = 0; j < W; j++) {
+			d[i][j] = INF;
+			color[i][j] = WHITE;
+		}
+	}
+	d[x][y] = 0;
+	priority_queue<Node> PQ;
+	PQ.push(Node(x, y, -d[x][y]));
+	color[x][y] = GRAY;
+	while (!PQ.empty()) {
+		Node u = PQ.top(); PQ.pop();
+		color[u.x][u.y] = BLACK;
+		//ここになにか入れる気がする
+		//top
+		if (u.y-1 >= 0) {
+			if (color[x][y-1] != BLACK && d[x][y-1] + ) {
+				d[x][y-1] =
+				PQ.push(Node(x, y-1, -d[x][y-1]));
+				color[x][y-1] = GRAY;
+			}
+		}
+		//right
+		//left
+		//bottom
+	}
+}
+
+int main() {
+	cin >> H >> W;
+	for (int i = 0; i < H; i++) {
+		for (int j = 0; j < W; j++) {
+			cin >> A[i][j];
+		}
+	}
+	for (int i = 0; i < H; i++) {
+		for (int j = 0; j < W; j++) {
+			ans = min(ans, dijkstra(i, j));
+		}
+	}
+	return 0;
+}

@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define MAXN 30
+#define MAXM 5
+
+class Tower {
+public:
+	int x, y, c;
+	Tower(int x, int y, int c) :
+			x(x), y(y), c(c) {
+	}
+};
+
+int N, M;
+vector<Tower> BigTower, SmallTower;
+
+double getCost(Tower t1, Tower t2) {
+	double ans;
+	ans = sqrt((t1.x - t2.x) * (t1.x - t2.x) + (t1.y - t2.y) * (t1.y - t2.y));
+	if (t1.c != t2.c)
+		ans *= 10;
+	return ans;
+}
+
+int main() {
+	cin >> N >> M;
+	for (int i = 0; i < N; i++) {
+		Tower t;
+		cin >> t.x >> t.y >> t.c;
+		BigTower.push_back(t);
+	}
+	for (int i = 0; i < M; i++) {
+		Tower t;
+		cin >> t.x >> t.y >> t.c;
+		SmallTower.push_back(t);
+	}
+	return 0;
+}

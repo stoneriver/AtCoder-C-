@@ -2,12 +2,12 @@
 using namespace std;
 
 #define MAX 2000000
-int N, Q;
-int C[MAX + 1], minall = INT_MAX, minodd = INT_MAX;
-map<int, int> sold1;
-int sold2 = 0, sold3 = 0;
+long long N, Q;
+long long C[MAX + 1], minall = INT_MAX, minodd = INT_MAX;
+map<long long, long long> sold1;
+long long sold2 = 0, sold3 = 0;
 
-int getRemaining(int i) {
+long long getRemaining(long long i) {
 	if (i % 2 == 0) {
 		return C[i] - sold1[i] - sold3;
 	} else {
@@ -15,58 +15,58 @@ int getRemaining(int i) {
 	}
 }
 
-bool canSell(int i, int a) {
+bool canSell(long long i, long long a) {
 	return getRemaining(i) >= a;
 }
 
-void sell(int i, int a) {
+void sell(long long i, long long a) {
 	sold1[i] += a;
 	minall = min(minall, getRemaining(i));
 	if (i % 2 == 1)
 		minodd = min(minodd, getRemaining(i));
 }
 
-bool canSellOdds(int a) {
+bool canSellOdds(long long a) {
 	return minodd >= a;
 }
 
-void sellOdds(int a) {
+void sellOdds(long long a) {
 	sold2 += a;
 	minodd -= a;
 	minall = min(minall, minodd);
 }
 
-bool canSellAll(int a) {
+bool canSellAll(long long a) {
 	return minall >= a;
 }
 
-void sellAll(int a) {
+void sellAll(long long a) {
 	sold3 += a;
 	minall -= a;
 	minodd -= a;
 }
 
-void type3(int a) {
+void type3(long long a) {
 	if (canSellAll(a)) {
 		sellAll(a);
 	}
 }
 
-void type2(int a) {
+void type2(long long a) {
 	if (canSellOdds(a)) {
 		sellOdds(a);
 	}
 }
 
-void type1(int x, int a) {
+void type1(long long x, long long a) {
 	if (canSell(x, a)) {
 		sell(x, a);
 	}
 }
 
-int getAns() {
-	int ans = 0;
-	for (map<int, int>::iterator it = sold1.begin(); it != sold1.end(); it++) {
+long long getAns() {
+	long long ans = 0;
+	for (map<long long, long long>::iterator it = sold1.begin(); it != sold1.end(); it++) {
 		ans += (*it).second;
 	}
 	ans += sold3 * N;
@@ -76,31 +76,31 @@ int getAns() {
 
 int main() {
 	cin >> N;
-	for (int i = 1; i <= N; i++) {
+	for (long long i = 1; i <= N; i++) {
 		cin >> C[i];
 		minall = min(minall, C[i]);
 		if (i % 2 == 1)
 			minodd = min(minodd, C[i]);
 	}
 	cin >> Q;
-	for (int i = 1; i <= Q; i++) {
-		int cmd;
+	for (long long i = 1; i <= Q; i++) {
+		long long cmd;
 		cin >> cmd;
 		switch (cmd) {
 		case 1: {
-			int x, a;
+			long long x, a;
 			cin >> x >> a;
 			type1(x, a);
 			break;
 		}
 		case 2: {
-			int a;
+			long long a;
 			cin >> a;
 			type2(a);
 			break;
 		}
 		case 3: {
-			int a;
+			long long a;
 			cin >> a;
 			type3(a);
 			break;
