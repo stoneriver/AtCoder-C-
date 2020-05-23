@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Task {
+public:
+	int A, B;
+	Task(int A, int B) :
+			A(A), B(B) {
+	}
+	bool operator <(const Task &t) const {
+		return A < t.A;
+	}
+};
+
+int main() {
+	int N;
+	priority_queue<Task> P;
+	priority_queue<int> Q;
+	cin >> N;
+	for (int i = 0; i < N; i++) {
+		int A, B;
+		cin >> A >> B;
+		P.push(Task(-A, B));
+	}
+	int pt = 0;
+	for (int k = 1; k <= N; k++) {
+		while (P.top().A >= -k && !P.empty()) {
+			Q.push(P.top().B);
+			P.pop();
+		}
+		pt += Q.top();
+		Q.pop();
+		cout << pt << endl;
+	}
+	return 0;
+}

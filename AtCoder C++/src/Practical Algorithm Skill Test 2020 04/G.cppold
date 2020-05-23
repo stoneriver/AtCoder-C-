@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int Q;
+	list<pair<char, long long>> S;
+	cin >> Q;
+	for (int i = 0; i < Q; i++) {
+		int T;
+		cin >> T;
+		switch (T) {
+		case 1: {
+			char C;
+			long long X;
+			cin >> C >> X;
+			S.push_back(make_pair(C, X));
+			break;
+		}
+		case 2: {
+			int D;
+			cin >> D;
+			map<char, long long> C;
+			while (S.front().second <= D && !S.empty()) {
+				C[S.front().first] += S.front().second;
+				D -= S.front().second;
+				S.pop_front();
+			}
+			if (!S.empty()) {
+				C[S.front().first] += D;
+				S.front().second -= D;
+			}
+			long long ans = 0;
+			for (map<char, long long>::iterator it = C.begin(); it != C.end(); it++) {
+				ans += (*it).second * (*it).second;
+			}
+			cout << ans << endl;
+			break;
+		}
+		}
+	}
+	return 0;
+}

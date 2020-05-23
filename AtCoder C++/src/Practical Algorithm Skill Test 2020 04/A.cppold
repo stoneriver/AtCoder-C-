@@ -1,0 +1,18 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	vector<string> flr = { "B9", "B8", "B7", "B6", "B5", "B4", "B3", "B2", "B1",
+			"1F", "2F", "3F", "4F", "5F", "6F", "7F", "8F", "9F" };
+	string S, T;
+	int s, t;
+	cin >> S >> T;
+	for (int i = 0; i < flr.size(); i++) {
+		if (flr[i] == S)
+			s = i;
+		if (flr[i] == T)
+			t = i;
+	}
+	cout << abs(s - t) << endl;
+	return 0;
+}

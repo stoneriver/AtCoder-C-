@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define MAX 100
+
+int main() {
+	int N, A[MAX + 1];
+	cin >> N;
+	for (int i = 1; i <= N; i++) {
+		cin >> A[i];
+	}
+	for (int i = 1; i <= N; i++) {
+		int x = A[i];
+		int cnt = 1;
+		while (x != i) {
+			x = A[x];
+			cnt++;
+		}
+		cout << cnt << " ";
+	}
+	return 0;
+}
