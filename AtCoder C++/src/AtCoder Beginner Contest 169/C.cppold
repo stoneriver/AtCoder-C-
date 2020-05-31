@@ -1,0 +1,13 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	unsigned long long A;
+	string B;
+	cin >> A >> B;
+	B.erase(B.find('.'), 1);
+	unsigned long long b = stoi(B);
+	unsigned long long ans = A * b;
+	cout << ans / 100 << endl;
+	return 0;
+}

@@ -1,0 +1,71 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define MAX 50
+
+int main() {
+	int H, W;
+	string S[MAX];
+	cin >> H >> W;
+	for (int i = 0; i < H; i++) {
+		cin >> S[i];
+	}
+	for (int h = 0; h < H; h++) {
+		for (int w = 0; w < W; w++) {
+			if (S[h][w] == '#')
+				continue;
+			int cnt = 0;
+			if (h - 1 >= 0 && w - 1 >= 0 && S[h - 1][w - 1] == '#')
+				cnt++;
+			if (h - 1 >= 0 && S[h - 1][w] == '#')
+				cnt++;
+			if (h - 1 >= 0 && w + 1 < W && S[h - 1][w + 1] == '#')
+				cnt++;
+			if (w - 1 >= 0 && S[h][w - 1] == '#')
+				cnt++;
+			if (S[h][w] == '#')
+				cnt++;
+			if (w + 1 < W && S[h][w + 1] == '#')
+				cnt++;
+			if (h + 1 < H && w - 1 >= 0 && S[h + 1][w - 1] == '#')
+				cnt++;
+			if (h + 1 < H && S[h + 1][w] == '#')
+				cnt++;
+			if (h + 1 < H && w + 1 < W && S[h + 1][w + 1] == '#')
+				cnt++;
+			switch (cnt) {
+			case 0:
+				S[h][w] = '0';
+				break;
+			case 1:
+				S[h][w] = '1';
+				break;
+			case 2:
+				S[h][w] = '2';
+				break;
+			case 3:
+				S[h][w] = '3';
+				break;
+			case 4:
+				S[h][w] = '4';
+				break;
+			case 5:
+				S[h][w] = '5';
+				break;
+			case 6:
+				S[h][w] = '6';
+				break;
+			case 7:
+				S[h][w] = '7';
+				break;
+			case 8:
+				S[h][w] = '8';
+				break;
+			}
+		}
+	}
+	for (int i = 0; i < H; i++) {
+		cout << S[i] << endl;
+	}
+	return 0;
+}

@@ -1,0 +1,16 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define MAX 200000
+
+int main() {
+	long long N, T, t[MAX], X = 0;
+	cin >> N >> T;
+	for (int i = 0; i < N; i++)
+		cin >> t[i];
+	for (int i = 0; i < N - 1; i++)
+		X += min(t[i + 1] - t[i], T);
+	X += T;
+	cout << X << endl;
+	return 0;
+}

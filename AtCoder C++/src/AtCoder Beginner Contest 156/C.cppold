@@ -1,0 +1,20 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define MAX 100
+
+int main() {
+	int N, X[MAX];
+	cin >> N;
+	for (int i = 0; i < N; i++)
+		cin >> X[i];
+	int minc = INT_MAX;
+	for (int P = 1; P <= 100; P++) {
+		int c = 0;
+		for (int i = 0; i < N; i++) {
+			c += (X[i] - P) * (X[i] - P);
+		}
+		minc = min(minc, c);
+	}
+	cout << minc << endl;
+	return 0;
+}

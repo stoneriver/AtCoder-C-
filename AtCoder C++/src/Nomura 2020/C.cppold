@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Node {
+	long long d;
+};
+
+#define MAX 100000
+
+//TLEでアウト。このアルゴリズムだとすべての節を訪問するのでNが大きく、かつ葉が深くにならないと現れないような場合に非常に非効率。O(2^N)まである。
+int main() {
+	//入力
+	long long N, A[MAX + 1], sum = 0;
+	cin >> N;
+	for (int i = 0; i <= N; i++) {
+		cin >> A[i];
+		sum += A[i];
+	}
+
+	//解答
+	queue<Node*> Q;
+	Node *root = (Node*) malloc(sizeof(Node*));
+	Q.push(root);
+	root->d = 0;
+	long long ans = 0;
+	sum--;
+	while (!Q.empty()) {
+		Node *u = Q.front();
+		Q.pop();
+		ans++;
+		long long d = u->d;
+		if (A[d] != 0) {
+			A[d]--;
+			continue;
+		}
+		Node *v = (Node*) malloc(sizeof(Node));
+		v->d = d + 1;
+		Q.push(v);
+		if (sum != 0) {
+			Node *v = (Node*) malloc(sizeof(Node));
+			v->d = d + 1;
+			Q.push(v);
+			sum--;
+		}
+		free(u);
+	}
+	for (int d = 0; d <= N; d++) {
+		if (A[d] == 0)
+			continue;
+		else {
+			ans = -1;
+			break;
+		}
+	}
+	cout << ans << endl;
+	return 0;
+}

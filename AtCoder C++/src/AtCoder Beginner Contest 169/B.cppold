@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define MAX 100000
+
+int main() {
+	int N;
+	long long A[MAX];
+	long long ans = 1;
+	cin >> N;
+	for (int i = 0; i < N; i++) {
+		cin >> A[i];
+		if (A[i] == 0) {
+			ans = 0;
+			cout << ans << endl;
+			return 0;
+		}
+	}
+	for (int i = 0; i < N; i++) {
+		if (ans > 1000000000000000000 / A[i]) {
+			ans = -1;
+			break;
+		} else {
+			ans *= A[i];
+		}
+	}
+	cout << ans << endl;
+	return 0;
+}

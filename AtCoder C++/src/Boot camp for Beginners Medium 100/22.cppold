@@ -1,0 +1,14 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int N, K;
+	double ans = 0;
+	cin >> N >> K;
+	for (int n = 1; n <= N; n++) {
+		double m = max(0.0, ceil(log2(1.0 * K / n)));
+		ans += pow(0.5, m) / N;
+	}
+	cout << fixed << setprecision(15) << ans << endl;
+	return 0;
+}

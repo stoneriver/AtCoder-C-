@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int N, a;
+	cin >> N;
+	int cnt4n = 0, cnt2n = 0;
+	for (int i = 0; i < N; i++) {
+		cin >> a;
+		if (a % 4 == 0)
+			cnt4n++;
+		else if (a % 2 == 0)
+			cnt2n++;
+	}
+	N -= 2 * cnt4n;
+	if (cnt2n == 0)
+		N--;
+	N -= cnt2n;
+	cout << (N <= 0 ? "Yes" : "No") << endl;
+	return 0;
+}

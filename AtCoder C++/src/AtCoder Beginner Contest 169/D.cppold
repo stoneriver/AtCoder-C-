@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+map<long long, long long> primeFactorize(long long N) {
+	map<long long, long long> ans;
+	int p = 2;
+	while (true) {
+		if (N == 1) {
+			break;
+		} else if (ans.find(p) == ans.end() && p > sqrt(N) + 1) {	//Nが素数
+			ans[N] = 1;
+			break;
+		}
+
+		if (N % p == 0) {
+			N /= p;
+			ans[p]++;
+		} else {
+			p++;
+		}
+	}
+	return ans;
+}
+
+int main() {
+	long long N;
+	cin >> N;
+	long long ans = 0;
+	auto P = primeFactorize(N);
+	for (auto it = P.begin(); it != P.end(); it++) {
+		int i = 0;
+		int e = (*it).second;
+		while (e > 0) {
+			e -= ++i;
+		}
+		if (e < 0) {
+			i--;
+		}
+		ans += i;
+	}
+	cout << ans << endl;
+	return 0;
+}

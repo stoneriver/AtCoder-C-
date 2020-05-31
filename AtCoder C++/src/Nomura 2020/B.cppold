@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	string T;
+	cin >> T;
+	for (int i = 0; i < T.size(); i++) {
+		if (T[i] != '?') {
+			continue;
+		}
+		//コーナーケースの処理
+		if (T.size() == 1) {
+			T[0] = 'D';
+			continue;
+		}
+		if (i == 0) {
+			if (T[i + 1] == '?')
+				T[i] = 'P';
+			else if (T[i + 1] == 'D')
+				T[i] = 'P';
+			else if (T[i + 1] == 'P')
+				T[i] = 'D';
+			continue;
+		}
+		if (i == T.size() - 1) {
+			T[i] = 'D';
+			continue;
+		}
+
+		//通常処理
+		if (T[i - 1] == 'P') {
+			T[i] = 'D';
+		} else if (T[i - 1] == 'D') {
+			if (T[i + 1] == '?')
+				T[i] = 'P';
+			else if (T[i + 1] == 'D')
+				T[i] = 'P';
+			else if (T[i + 1] == 'P')
+				T[i] = 'D';
+		}
+
+	}
+	cout << T << endl;
+
+	return 0;
+}

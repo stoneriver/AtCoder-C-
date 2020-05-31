@@ -1,23 +1,35 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
-int main() {
-	int N;
-	cin >> N;
-	int A[N+1];
-	int C[N+1];
-	for (int i = 1; i <= N; i++) {
-		cin >> A[i];
-		C[A[i]]++;
+#define MAX 200000
+
+template<typename T> T combination(int n, int r) {
+	T ans = 1;
+	for (int i = 0; i < r; i++) {
+		ans *= n - i;
 	}
-	for (int k = 1; k <= N; k++) {
-		C[k]--;
-		int cnt = 0;
-		for (int i = 1; i <= N; i++) {
-			cnt += C[i]*(C[i]-1)/2;
-		}
-		cout << cnt << endl;
-		C[k]++;
+	for (int i = 1; i <= r; i++) {
+		ans /= i;
+	}
+	return ans;
+}
+
+int main() {
+	int N, A[MAX];
+	map<int, int> K;
+	cin >> N;
+	for (int i = 0; i < N; i++) {
+		cin >> A[i];
+		K[A[i]]++;
+	}
+	long long cmb = 0;
+	for (map<int, int>::iterator it = K.begin(); it != K.end(); it++) {
+		cmb += combination<long long>((*it).second, 2);
+	}
+	for (int i = 0; i < N; i++) {
+		long long ans = cmb;
+		ans -= (K[A[i]] - 1);
+		cout << ans << endl;
 	}
 	return 0;
 }

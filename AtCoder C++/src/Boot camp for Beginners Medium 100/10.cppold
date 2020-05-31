@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int N;
+	cin >> N;
+	map<int,int> A;
+	for (int i = 0; i < N; i++) {
+		int a;
+		cin >> a;
+		A[a - 1]++;
+		A[a]++;
+		A[a + 1]++;
+	}
+	int ans = INT_MIN;
+	for (auto it = A.begin(); it != A.end(); it++) {
+		ans = max(ans, (*it).second);
+	}
+	cout << ans << endl;
+	return 0;
+}
